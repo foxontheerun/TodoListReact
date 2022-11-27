@@ -12,10 +12,11 @@ function App() {
             taskName: userInput.taskName,
             taskBody: userInput.taskBody,
             taskDate: userInput.taskDate,
+            taskFile: userInput.taskFile,
             status: false,
         }
-
-        setTodoState([...todoState, newItem])
+      console.log(userInput.taskFile);
+        setTodoState([...todoState,  newItem])
     }
 
 
@@ -37,13 +38,14 @@ function App() {
           ...todoState.map((todo) =>
               todo.id === id ? { ...todo, taskName: name, taskBody: body } : {...todo})
       ])
+      
   }
 
   return (
       <div className="App">
         <header>
           <h1>ToDo list</h1>
-          <h2>tasks: {todoState.length}</h2>
+          <h2>Tasks: {todoState.length}</h2>
         </header>
         <Form addTask={addTask}/>
           {

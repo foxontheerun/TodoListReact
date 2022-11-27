@@ -7,19 +7,23 @@ const Form = (props) => {
     const [userInputTaskName, setUserInputTaskName] = useState('');
     const [userInputTaskBody, setUserInputTaskBody] = useState('');
     const [userInputTaskDate, setUserInputTaskDate] = useState(currentTime);
+    const [inputFile, setFile] = useState([]);
+
+    const handleFileChange = (event) => {
+        setFile(event.target.files);
+    }
 
     const handleNameChange = (e) => {
         setUserInputTaskName(e.currentTarget.value)
     };
 
     const handleBodyChange = (e) => {
-        setUserInputTaskBody(e.currentTarget.value)
+        setUserInputTaskBody(e.currentTarget.value);
     };
 
     const handleDateChange = (e) => {
         setUserInputTaskDate(e.currentTarget.value)
     };
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +31,9 @@ const Form = (props) => {
             {   taskName: userInputTaskName,
                 taskBody: userInputTaskBody,
                 taskDate: userInputTaskDate,
+                taskFile: inputFile,
             });
+            console.log();
         setUserInputTaskName('');
         setUserInputTaskBody('');
         setUserInputTaskDate(currentTime);
@@ -48,6 +54,21 @@ const Form = (props) => {
                        className="date-input"
                        onChange={handleDateChange}
                        value={userInputTaskDate}/>
+                {/* <input multiple type="file" onChange={handleFileChange}/> */}
+
+                <div id="upload-container">
+                        <input 
+                            id="file-input" 
+                            onChange={handleFileChange}
+                            type="file" 
+                            name="file" 
+                            multiple/>
+                        <label htmlFor="file-input">
+                            <span className="material-symbols-outlined">attach_file</span>
+                        </label>
+                </div>
+
+
                 <button className="add-task">Add task</button>
             </div>
             <textarea
