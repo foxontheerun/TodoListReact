@@ -1,4 +1,5 @@
 import {useState} from "react";
+import React from "react";
 import dayjs from "dayjs";
 
 const Form = (props) => {
@@ -25,7 +26,7 @@ const Form = (props) => {
         props.addTask(
             {   taskName: userInputTaskName,
                 taskBody: userInputTaskBody,
-                taskDate: userInputTaskDate
+                taskDate: userInputTaskDate,
             });
         setUserInputTaskName('');
         setUserInputTaskBody('');
@@ -37,13 +38,14 @@ const Form = (props) => {
         <form onSubmit={handleSubmit}>
             <div className="header-task">
                 <input
+                    type="text"
                     className="input-task-name"
                     placeholder="Enter task name"
                     value={userInputTaskName}
-                    type="text"
                     onChange={handleNameChange}
                 />
-                <input type="datetime-local" className="date-input"
+                <input type="datetime-local"
+                       className="date-input"
                        onChange={handleDateChange}
                        value={userInputTaskDate}/>
                 <button className="add-task">Add task</button>

@@ -28,8 +28,15 @@ function App() {
   const changeStatus = (id) => {
     setTodoState([
         ...todoState.map((todo) =>
-        todo.id === id ? { ...todo, status: !todo.status } : {...todo})
+        todo.id === id ? { ...todo, status: true } : {...todo})
     ])
+  }
+
+  const changeTask = (id, name, body) => {
+      setTodoState([
+          ...todoState.map((todo) =>
+              todo.id === id ? { ...todo, taskName: name, taskBody: body } : {...todo})
+      ])
   }
 
   return (
@@ -45,6 +52,7 @@ function App() {
                       <ToDo
                           todo={todo}
                           changeStatus={changeStatus}
+                          changeTask={changeTask}
                           removeTask={removeTask}
                           key={todo.id}
                       />

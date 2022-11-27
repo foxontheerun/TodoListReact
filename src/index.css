@@ -140,6 +140,7 @@ button {
   border:0;
   outline:none;
   background-color: var(--inp-color);
+  color: var(--text-color);
 }
 
 .task-container {
