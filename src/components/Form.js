@@ -61,8 +61,7 @@ const Form = (props) => {
                             id="file-input" 
                             onChange={handleFileChange}
                             type="file" 
-                            name="file" 
-                            multiple/>
+                            name="file" />
                         <label htmlFor="file-input">
                             <span className="material-symbols-outlined">attach_file</span>
                         </label>
