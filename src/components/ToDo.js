@@ -8,9 +8,11 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
     const [disabledInput, setDisabledIinput] = useState(true);
     const time = dayjs(todo.taskDate).format('MMM D, HH:mm').toString();
     const inputRef = useRef(null);
+
     useEffect(() => {
       inputRef.current.focus();
     }, [])
+
     let timer = setInterval(function () {
         if( !todo.status && ((dayjs() - dayjs(todo.taskDate)) >= 0)) {
             changeStatus(todo.id);
@@ -35,29 +37,24 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
        
     }
     
-
-
-
     function showFile() {
-        var preview = document.getElementById('files');
-        var file   = todo.taskFile[0];
-        var reader  = new FileReader();
+        if(todo.taskFile) {
+            const preview = document.getElementById('files');
+        const file   = todo.taskFile;
+        const reader  = new FileReader();
       
         reader.onloadend = function () {
           preview.src = reader.result;
         }
-        
-        // files.map(file => {
-            reader.readAsDataURL(file);
-        // })
-
+        reader.readAsDataURL(file);
+        }
       }
 
  return (
      <div key={todo.id} className={todo.status ? "task complete-task" : "task"}>
          <div className="task-header">
              <div className="date">{time}</div>
-             <button onClick={showFile}>files: {todo.taskFile.length}</button>
+             {todo.taskFile && <button onClick={showFile}>file</button>}
              <img id="files" src="" height="500" />
              <button
                 disabled={todo.status}
