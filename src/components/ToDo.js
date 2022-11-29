@@ -11,14 +11,14 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
 
     useEffect(() => {
       inputRef.current.focus();
-    }, [])
-
-    let timer = setInterval(function () {
+      let timer = setInterval(function () {
         if( !todo.status && ((dayjs() - dayjs(todo.taskDate)) >= 0)) {
             changeStatus(todo.id);
             clearInterval(timer);
         }
     }, 1000);
+    })
+
 
     const handleBodyChange = (e) => {
         setTaskBody(e.currentTarget.value);

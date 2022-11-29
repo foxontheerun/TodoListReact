@@ -2,6 +2,7 @@ import {useState} from "react";
 import React from "react";
 import dayjs from "dayjs";
 
+
 const Form = (props) => {
     const currentTime = dayjs().format('YYYY-MM-DDTHH:mm').toString();
     const [userInputTaskName, setUserInputTaskName] = useState('');
@@ -54,7 +55,6 @@ const Form = (props) => {
                        className="date-input"
                        onChange={handleDateChange}
                        value={userInputTaskDate}/>
-                {/* <input multiple type="file" onChange={handleFileChange}/> */}
 
                 <div id="upload-container">
                         <input 
