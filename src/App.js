@@ -1,27 +1,52 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "./components/Form";
 import ToDo from "./components/ToDo";
+import firebaseConfig from "./firebase"
+import firebase from 'firebase/compat/app';
+import firestore from 'firebase/compat/firestore';
+import { getDatabase, set, ref, Database, push, child, get } from "firebase/database";
+
 
 function App() {
-  const [todoState, setTodoState] = useState([])
+  useEffect(() => {
+   firebase.initializeApp(firebaseConfig);
+   const dbRef = ref(getDatabase());
+    get(child(dbRef, `/tasks`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
 
-  const addTask = (userInput) => {
+  })
+  const [todoState, setTodoState] = useState([])
+ 
+  const addTask = async (userInput) => {
     if(userInput) {
         const newItem = {
             id: Math.random().toString(20).substring(5, 15),
             taskName: userInput.taskName,
             taskBody: userInput.taskBody,
             taskDate: userInput.taskDate,
-            taskFile: userInput.taskFile,
+            taskFile: userInput.taskFile[0],
             status: false,
         }
-      console.log(userInput.taskFile);
         setTodoState([...todoState,  newItem])
+        pushData(newItem);
+        // set(ref(db, "/tasks"), newItem);
+// 
     }
-
-
   }
 
+
+  const pushData = async (item) => {
+    const db = getDatabase();
+    const taskRef = push(ref(db, "/tasks"));
+    set(taskRef, item);
+  }
   const removeTask = (id) => {
     setTodoState([...todoState.filter((todo) => todo.id !== id)])
   }

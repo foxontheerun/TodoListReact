@@ -7,7 +7,7 @@ const Form = (props) => {
     const [userInputTaskName, setUserInputTaskName] = useState('');
     const [userInputTaskBody, setUserInputTaskBody] = useState('');
     const [userInputTaskDate, setUserInputTaskDate] = useState(currentTime);
-    const [inputFile, setFile] = useState([]);
+    const [inputFile, setFile] = useState(['']);
 
     const handleFileChange = (event) => {
         setFile(event.target.files);
