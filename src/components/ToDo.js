@@ -5,7 +5,9 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
 
     const [inputTaskName, setTaskName] = useState(todo.taskName);
     const [inputTaskBody, setTaskBody] = useState(todo.taskBody);
-    const [disabledInput, setDisabledIinput] = useState(true);
+    let [disabledInput, setDisabledIinput] = useState(true);
+    let [isFileShowing, setIsFileShowing] = useState(false);
+
     const time = dayjs(todo.taskDate).format('MMM D, HH:mm').toString();
     const inputRef = useRef(null);
 
@@ -17,7 +19,7 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
             clearInterval(timer);
         }
     }, 1000);
-    })
+    }, [])
 
 
     const handleBodyChange = (e) => {
@@ -38,9 +40,8 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
     }
     
     const showFile = () => {
-        if(todo.taskFile) {
-            const preview = document.getElementById('files');
-            preview.src = todo.taskFile;
+        if (todo.taskFile) {
+            setIsFileShowing(!isFileShowing)
         }
       }
 
@@ -49,7 +50,6 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
          <div className="task-header">
              <div className="date">{time}</div>
              {todo.taskFile && <button onClick={showFile}>file</button>}
-             <img id="files" src="" height="500" />
              <button
                 disabled={todo.status}
                  className="dtn-task"
@@ -78,7 +78,7 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
                 onChange={handleNameChange}
                 
             />
-                 {todo.taskBody && <div>
+                 <div>
                      <hr color="pink" />
                      <textarea 
                          ref={inputRef}
@@ -88,7 +88,8 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
                          onChange={handleBodyChange}
                          rows={inputTaskBody.split('\n').length}
                          />
-                 </div>}
+                 </div>
+                 {isFileShowing &&<img id="file" src={todo.taskFile} />}
          </div>
      </div>
  )

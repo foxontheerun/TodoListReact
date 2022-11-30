@@ -1,38 +1,22 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
+  /*align-items: center;*/
   justify-content: center;
   background-image: linear-gradient(to left, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
   font-size: 20px;
 }
-
-:root {
-  --bg-color: #ff61c0;
-  --accent-color: #c05cac;
-  --text-color: #460638;
-  --done-task-color: #e26bea;
-  --inp-color: #fff9f9;
-  --delete-color: #ffaadc;
-  --complete-task: #414141;
-}
-
-
 .not-visible {
   visibility: hidden;
 }
-
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
-
 .task-header {
   display: flex;
   justify-content: space-around;
@@ -41,66 +25,55 @@ body {
   height: 50px;
   margin-bottom: 10px;
 }
-
 form {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
 }
-
 .header-task {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
-
 input {
   width: 100%;
-  border:0;
-  outline:none;
-  background-color: var(--inp-color);
+  border: 0;
+  outline: none;
+  background-color: #fff9f9;
   font-size: 16px;
   font-family: Arial;
 }
-
-
 .input-task-name {
   padding: 20px;
   border-radius: 10px;
 }
-
-h1, h2 {
-  text-align:center;
-  color: var(--text-color);
+h1,
+h2 {
+  text-align: center;
+  color: #460638;
   text-transform: uppercase;
   font-family: Arial;
 }
-
 .files {
   width: 150px;
 }
-
 .task {
-  background-color: var(--accent-color);
+  background-color: #c05cac;
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
-
 .task-name {
-  color: var(--text-color);
-  background-color: var(--inp-color);
+  color: #460638;
+  background-color: #fff9f9;
   display: flex;
   justify-content: center;
 }
-
-
 .active {
-  box-shadow: 0px 0px 15px var(--delete-color);
+  box-shadow: 0px 0px 15px #ffaadc;
 }
-
 button {
   border: 0;
   border-radius: 10px;
@@ -111,45 +84,39 @@ button {
   text-transform: uppercase;
   cursor: pointer;
 }
-
 .add-task {
-  background-color: var(--accent-color);
+  background-color: #c05cac;
   margin-left: 10px;
   width: 200px;
   color: #ffffff;
 }
-
 .complete-task {
-  background-color: var(--complete-task);
+  background-color: #414141;
   color: white;
 }
-
 .dtn-task {
-  background: var(--delete-color);
+  background: #ffaadc;
+  /*padding: 10px;*/
   margin-left: 10px;
 }
-
 .date {
   padding: 10px;
+  /*margin: 10px;*/
 }
-
 .task-body {
   resize: none;
-  border:0;
-  outline:none;
-  background-color: var(--inp-color);
-  color: var(--text-color);
-  width: 100%;
+  border: 0;
+  outline: none;
+  background-color: #fff9f9;
+  color: #460638;
 }
-
 .task-container {
   padding: 20px;
-  border:0;
-  outline:none;
-  background: var(--inp-color);
+  border: 0;
+  outline: none;
+  background: #fff9f9;
   border-radius: 10px;
 }
-
 .input-task-body {
   height: 100px;
   border-radius: 10px;
@@ -158,27 +125,25 @@ button {
   font-family: Arial;
   width: 900px;
 }
-
 hr {
-  color: var(--delete-color);
+  color: #ffaadc;
 }
-
 .date-input {
-    width: 300px;
-    border-radius: 10px;
-    margin-left: 10px;
-    padding: 10px;
+  width: 300px;
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 10px;
 }
-
-#file {
-  height: 300px;
+#files {
+  position: absolute;
+  top: 100px;
+  left: 200px;
 }
-
 #upload-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--inp-color);
+  background-color: #fff9f9;
   margin-left: 10px;
   padding: 10px;
   position: relative;
@@ -186,11 +151,9 @@ hr {
   width: 60px;
   border-radius: 10px;
 }
-
 #upload-container label:hover {
   cursor: pointer;
 }
-
 #upload-container input[type=file] {
   width: 0.1px;
   height: 0.1px;
