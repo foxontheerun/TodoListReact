@@ -4,7 +4,8 @@ import ToDo from "./components/ToDo";
 import dayjs from "dayjs";
 import firebaseConfig from "./firebase"
 import firebase from 'firebase/compat/app';
-import { getDatabase, set, ref, Database, push, child, get } from "firebase/database";
+import { getDatabase, set, ref, Database, push, child, get, remove, update } from "firebase/database";
+import Login from "./components/Login";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     get(child(dbRef, `/tasks`)).then((snapshot) => {
       if (snapshot.exists()) {
         const tasksArray = Object.values(snapshot.val());
+        const tasksKeyArray = Object.keys(snapshot.val());
         setTodoState(tasksArray)
         console.log(tasksArray);
 
@@ -40,20 +42,16 @@ function App() {
               false,
         }
         setTodoState([...todoState,  newItem])
-        pushData(newItem);
-        // set(ref(db, "/tasks"), newItem);
-// 
+        const db = getDatabase();
+        set((ref(db, "/tasks/" + newItem.id)), newItem);
     }
   }
 
 
-  const pushData =  (item) => {
-    const db = getDatabase();
-    const taskRef = push(ref(db, "/tasks"));
-    set(taskRef, item);
-  }
   const removeTask = (id) => {
-    setTodoState([...todoState.filter((todo) => todo.id !== id)])
+    setTodoState([...todoState.filter((todo) => todo.id !== id)]);
+    const db = getDatabase();
+    remove(ref(db, "/tasks/" + id));  
   }
 
   const changeStatus = (id) => {
@@ -61,6 +59,8 @@ function App() {
         ...todoState.map((todo) =>
         todo.id === id ? { ...todo, status: true } : {...todo})
     ])
+    const db = getDatabase();
+    set((ref(db, "/tasks/" + id + '/status')), true);
   }
 
   const changeTask = (id, name, body) => {
@@ -68,10 +68,14 @@ function App() {
           ...todoState.map((todo) =>
               todo.id === id ? { ...todo, taskName: name, taskBody: body } : {...todo})
       ])
-      
+      const db = getDatabase();
+      set((ref(db, "/tasks/" + id + '/taskName')),  name);
+      set((ref(db, "/tasks/" + id + '/taskBody')),  body);
   }
 
   return (
+    
+      
       <div className="App">
         <header>
           <h1>ToDo list</h1>

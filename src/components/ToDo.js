@@ -92,6 +92,7 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
                          value={inputTaskBody}
                          className="task-body"
                          onChange={handleBodyChange}
+                         rows={inputTaskBody.split('\n').length}
                          />
                  </div>}
          </div>

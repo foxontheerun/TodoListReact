@@ -127,13 +127,11 @@ button {
 
 .dtn-task {
   background: var(--delete-color);
-  /*padding: 10px;*/
   margin-left: 10px;
 }
 
 .date {
   padding: 10px;
-  /*margin: 10px;*/
 }
 
 .task-body {
@@ -142,6 +140,7 @@ button {
   outline:none;
   background-color: var(--inp-color);
   color: var(--text-color);
+  width: 100%;
 }
 
 .task-container {
@@ -158,6 +157,7 @@ button {
   padding: 20px;
   font-size: 16px;
   font-family: Arial;
+  width: 900px;
 }
 
 hr {
