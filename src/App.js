@@ -26,9 +26,11 @@ function App() {
         console.error(error);
       });
   }, []);
-  /** Состояние с массивом задач*/
+  /** Состояние с массивом задач */
   const [todoState, setTodoState] = useState([]);
-  /** Функция дабавления задач */
+  /** Функция дабавления задач в состояние и на сервер
+   * @param {string} userInput имя задачи
+   */
   const addTask = async (userInput) => {
     if (userInput) {
       const newItem = {
@@ -46,13 +48,17 @@ function App() {
       set(ref(db, "/tasks/" + newItem.id), newItem);
     }
   };
-  /** Удаление задачи */
+  /** Удаление задачи
+   * @param {string} id идентификатор задачи
+   */
   const removeTask = (id) => {
     setTodoState([...todoState.filter((todo) => todo.id !== id)]);
     const db = getDatabase();
     remove(ref(db, "/tasks/" + id));
   };
-  /** Изменение статса выполнения задачи */
+  /** Изменение статса выполнения задачи
+   * @param {string} id идентификатор задачи
+   */
   const changeStatus = (id) => {
     setTodoState([
       ...todoState.map((todo) =>
@@ -62,7 +68,11 @@ function App() {
     const db = getDatabase();
     set(ref(db, "/tasks/" + id + "/status"), true);
   };
-  /** Изменение имени и содержимого задачи */
+  /** Изменение имени и содержимого задачи
+   *@param {string} id идентификатор задачи
+   * @param {string} name имя задачи
+   * @param {string} body описание задачи
+   */
   const changeTask = (id, name, body) => {
     setTodoState([
       ...todoState.map((todo) =>

@@ -8,6 +8,7 @@ const Form = (props) => {
   const [userInputTaskBody, setUserInputTaskBody] = useState("");
   const [userInputTaskDate, setUserInputTaskDate] = useState(currentTime);
   const [inputFile, setFile] = useState("");
+
   /** Обработка файла */
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -19,18 +20,21 @@ const Form = (props) => {
     reader.readAsDataURL(file);
   };
 
+  /** Обработка вводимых символов, устанавливает состояние имени задачи*/
   const handleNameChange = (e) => {
     setUserInputTaskName(e.currentTarget.value);
   };
-
+  /** Обработка вводимых символов, устанавливает состояние содержимого задачи*/
   const handleBodyChange = (e) => {
     setUserInputTaskBody(e.currentTarget.value);
   };
-
+  /** Обработка вводимой даты, устанавливает состояние даты выполнения задачи*/
   const handleDateChange = (e) => {
     setUserInputTaskDate(e.currentTarget.value);
   };
-
+  /** Отправляет состояния имени, содержимого, даты и файла задачи в функцию добавления
+   * @see addTask
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     props.addTask({
