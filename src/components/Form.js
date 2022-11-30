@@ -8,10 +8,16 @@ const Form = (props) => {
     const [userInputTaskName, setUserInputTaskName] = useState('');
     const [userInputTaskBody, setUserInputTaskBody] = useState('');
     const [userInputTaskDate, setUserInputTaskDate] = useState(currentTime);
-    const [inputFile, setFile] = useState(['']);
+    const [inputFile, setFile] = useState('');
 
     const handleFileChange = (event) => {
-        setFile(event.target.files);
+        const file   = event.target.files[0];
+        const reader  = new FileReader();
+        reader.onloadend = function () {
+            setFile(reader.result);
+        }
+        reader.readAsDataURL(file);
+        // setFile(reader.result);
     }
 
     const handleNameChange = (e) => {

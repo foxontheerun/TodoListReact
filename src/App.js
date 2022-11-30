@@ -36,7 +36,7 @@ function App() {
             taskName: userInput.taskName,
             taskBody: userInput.taskBody,
             taskDate: userInput.taskDate,
-            taskFile: userInput.taskFile[0],
+            taskFile: userInput.taskFile,
             status:  ( ((dayjs() - dayjs(userInput.taskDate)) >= 0)) ?
               true :
               false,

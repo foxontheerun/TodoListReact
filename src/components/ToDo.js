@@ -37,16 +37,10 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
        
     }
     
-    function showFile() {
+    const showFile = () => {
         if(todo.taskFile) {
             const preview = document.getElementById('files');
-        const file   = todo.taskFile;
-        const reader  = new FileReader();
-      
-        reader.onloadend = function () {
-          preview.src = reader.result;
-        }
-        reader.readAsDataURL(file);
+            preview.src = todo.taskFile;
         }
       }
 
