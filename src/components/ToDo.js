@@ -54,7 +54,7 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
                 disabled={todo.status}
                  className="dtn-task"
                  onClick={handleSubmit}>
-                 изменить
+                 change
              </button>
              <button className={todo.status ? "dtn-task not-visible" : "dtn-task "}
                      onClick={() => { 
@@ -62,12 +62,12 @@ const ToDo = ({todo, removeTask, changeStatus, changeTask}) => {
                                         setDisabledIinput(true)
                                     }}
                 >
-                завершить
+                finish
              </button>
              <button className="dtn-task" onClick={() => {
                  removeTask(todo.id)
              }}>
-                 Удалить
+                 remove
              </button>
          </div>
          <div className={disabledInput ? "task-container" : "task-container active" }>
