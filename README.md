@@ -1,4 +1,4 @@
-Todo List 
+ToDo list
 
 Домен: https://todo-list-e1f1c.web.app/
 
