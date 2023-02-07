@@ -7,5 +7,5 @@ Todo List
 - React, React hooks
 - HTML
 - CSS
-- Firebase (Realtime Database)
+- Firebase (Realtime Database) в качестве бека
 
